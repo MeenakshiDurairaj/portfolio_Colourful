@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Why I Started Learning AI</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f7f9fc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        #content {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        }
+
+            #content h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                color: #2a2a2a;
+            }
+
+            #content h2, #content h3 {
+                color: #444;
+                margin-top: 2rem;
+            }
+
+            #content p {
+                font-size: 1.125rem;
+                line-height: 1.8;
+                margin-bottom: 1.2rem;
+            }
+
+            #content ul {
+                margin-left: 1.5rem;
+                padding-left: 0.5rem;
+            }
+
+            #content li {
+                margin-bottom: 0.6rem;
+            }
+
+        @media (max-width: 768px) {
+            #content {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+                #content h1 {
+                    font-size: 2rem;
+                }
+
+                #content p {
+                    font-size: 1rem;
+                }
+        }
+    </style>
+
+</head>
+<body>
+    <header class="blog-header">
+        <h1>📗 Why I Started Learning AI</h1>
+        <p class="subtitle">Exploring my journey into artificial intelligence</p>
+    </header>
+    <div id="content">Loading post...</div>
+    <div class="back-button">
+        <a href="blog.html">← Back to Blog</a>
+        <a href="index.html">🏠 Home Page</a>
+    </div>
+    
+
+    <script>
+        fetch('posts/why-i-started-ai.md')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Markdown file not found');
+                }
+                return response.text();
+            })
+            .then(md => {
+                const converter = new showdown.Converter();
+                document.getElementById('content').innerHTML = converter.makeHtml(md);
+            })
+            .catch(error => {
+                document.getElementById('content').innerHTML = `<p>Error loading post: ${error.message}</p>`;
+            });
+    </script>
+</body>
+</html>
